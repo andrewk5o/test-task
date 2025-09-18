@@ -3,7 +3,8 @@
     "private": true,
     "version": "0.1.0",
     "scripts": {
-        "dev": "docker compose up -d postgres && npm --prefix apps/server run start:dev",
+        "install:all": "npm install && npm --prefix apps/client install && npm --prefix apps/server install",
+        "dev:all": "docker compose up -d && npm --prefix apps/client run dev",
         "db:up": "docker compose up -d postgres",
         "db:down": "docker compose down",
         "stack:up": "docker compose up --build -d",
