@@ -10,7 +10,6 @@ export function App() {
     const { data: users = [], isLoading: usersLoading, error: usersError } = useUsers();
     const { data: roles = [], isLoading: rolesLoading, error: rolesError } = useRoles();
     const [filterRoleId, setFilterRoleId] = useState<string>('');
-    // no per-user loading indicator; keep UI responsive
     const mutation = useUpdateUserRoles();
 
     const filteredUsers = useMemo(() => {
@@ -27,7 +26,6 @@ export function App() {
         return <LoadingIndicator />;
     }
 
-    // Handle errors with toasts instead of blocking UI
     if (usersError) {
         toast.error(`Failed to load users: ${(usersError as Error).message}`);
     }
