@@ -62,11 +62,6 @@ These components provide a consistent design system and are built on top of Radi
    npm run dev:all
    ```
 
-This will:
-- Start the PostgreSQL database via Docker
-- Start the NestJS backend server
-- Start the React frontend development server
-
 ### Available Scripts
 
 - `npm run install:all` - Install dependencies for all workspaces
