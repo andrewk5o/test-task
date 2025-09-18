@@ -2,6 +2,8 @@
 
 A full-stack application for managing users and their roles, built with React (Vite) frontend and NestJS backend.
 
+<img width="2178" height="1020" alt="image" src="https://github.com/user-attachments/assets/e5e0a833-58b3-49e0-8b5a-7351841f9be3" />
+
 ## Tech Stack
 
 ### Frontend (Client)
