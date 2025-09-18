@@ -1,0 +1,42 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: appdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  server:
+    build:
+      context: ./apps/server
+    environment:
+      PORT: 3000
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: appdb
+      NODE_ENV: development
+    ports:
+      - "3000:3000"
+      - "9229:9229"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./apps/server/src:/app/src
+      - ./apps/server/tsconfig.json:/app/tsconfig.json
+      - ./apps/server/tsconfig.build.json:/app/tsconfig.build.json
+
+volumes:
+  db_data:
+
